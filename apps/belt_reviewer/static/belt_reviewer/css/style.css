@@ -1,0 +1,71 @@
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  height: 50px;
+  display: block;
+  padding: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background: #faa;
+}
+
+.header div {
+  display: inline-block;
+}
+
+.header .links {
+  float: right;
+}
+
+.space {
+  width: 20px;
+}
+
+.main-section, .side-section {
+  display: inline-block;
+}
+
+.main-section {
+  //background: #faa;
+  width: 60%;
+  vertical-align: top;
+}
+
+.main-section .title {
+  margin-bottom: 28px;
+}
+
+.side-section {
+  min-width: 30%;
+}
+
+.review {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.review_content {
+  font-size: 20px;
+}
+
+.book-review {
+  border-top: 2px solid black;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.reviews {
+  width: 60%;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.add-review {
+  width: 29%;
+  float: right;
+  display: inline-block;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users New</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <style media="screen">
+
+      .return {
+        margin-top: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>User</h1>
+        <div class="property">
+          <h6>First Name:</h6>
+          <span>{{ user.first_name }}</span>
+        </div>
+        <div class="property">
+          <h6>Last Name:</h6>
+          <span>{{ user.last_name }}</span>
+        </div>
+        <div class="property">
+          <h6>Email:</h6>
+          <span>{{ user.email }}</span>
+        </div>
+        <a class="btn green return" href="/user/{{ user.id }}/edit">Edit</a>
+        <a class="btn red return" href="/user/{{ user.id }}/destroy">Delete</a>
+        <a class="btn blue return" href="/users">Go back</a>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_reviewer/css/style.css' %}">
+    <script src="{% static 'belt_reviewer/scripts/script.js' %}" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="links">
+        <a href="/books">Home</a>
+        <div class="space"></div>
+        <a href="/books/add">Add Book and Review</a>
+        <div class="space"></div>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="user-info">
+        <h3>User:</h3>
+        {{ user.first_name }} {{ user.last_name }}
+        <h5>Email:</h5>
+        {{ user.email }}
+        <h5>Reviews:</h5>
+        {{ review_count }}
+      </div>
+      <div class="user-reviews">
+        <h4>Posted Reviews on the following books:</h4>
+        <ul>
+          {% for review in user.reviews.all %}
+          <li><a href="/books/{{ review.book.id }}">{{ review.book.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>

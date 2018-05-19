@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Gold</title>
+  </head>
+  <style media="screen">
+    .box {
+      display: inline-block;
+    }
+    .message {
+      display: block;
+    }
+  </style>
+  <body>
+
+    <div class="gold">
+      Your Gold: {{ request.session.gold }}
+    </div>
+
+    <div class="boxes">
+      <div class="box">
+        <h3>Farm</h3>
+        <p>(earns 10-20 golds)</p>
+        <a href="/process_money/0">Find Gold!</a>
+      </div>
+      <div class="box">
+        <h3>Cave</h3>
+        <p>(earns 5-10 golds)</p>
+        <a href="/process_money/1">Find Gold!</a>
+      </div>
+      <div class="box">
+        <h3>House</h3>
+        <p>(earns 2-5 golds)</p>
+        <a href="/process_money/2">Find Gold!</a>
+      </div>
+      <div class="box">
+        <h3>Casino</h3>
+        <p>(earns/takes 0-50 golds)</p>
+        <a href="/process_money/3">Find Gold!</a>
+      </div>
+    </div>
+
+    <div>
+      {% for action in request.session.actions %}
+      <div class="message">
+        {{ action }}
+      </div>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>

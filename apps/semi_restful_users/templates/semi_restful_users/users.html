@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <style media="screen">
+
+      .pushed-down {
+        margin-top: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Users</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>
+              <a href="user/{{ user.id }}">Show</a>
+              <a href="user/{{ user.id }}/edit">Edit</a>
+              <a href="user/{{ user.id }}/destroy">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a class="btn blue pushed-down" href="/users/new">Add New User</a>
+    </div>
+
+  </body>
+</html>

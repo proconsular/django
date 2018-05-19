@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Title</title>
+  </head>
+  <style media="screen">
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      margin: auto;
+      width: 800px;
+      background: #afa;
+      padding: 24px;
+      margin-top: 40px;
+    }
+
+    .insertion {
+      width: 49%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .printout {
+      width: 49%;
+      display: inline-block;
+      vertical-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .big {
+      font-size: 42px;
+    }
+
+  </style>
+  <body>
+
+    <div class="container">
+
+      <div class="insertion">
+        <form action="/process" method="post">
+          {% csrf_token %}
+          <h3>Add a new word</h3>
+          <input type="text" name="word">
+          <h6>Choose color</h6>
+          <ul>
+            <li>
+              <input type="radio" name="color" value="red">Red
+            </li>
+            <li>
+              <input type="radio" name="color" value="blue">Blue
+            </li>
+            <li>
+              <input type="radio" name="color" value="green">Green
+            </li>
+          </ul>
+          <div>
+            <input type="checkbox" name="big">show in BIG fonts!
+          </div>
+          <input type="submit" value="Add to Session">
+        </form>
+
+
+      </div>
+
+      <div class="printout">
+        <a href="/clear">Clear Session</a>
+        <ul>
+          {% for item in request.session.items %}
+          <li>
+            <table>
+              <tr>
+                {% if item.big %}
+                <td style="color:{{item.color}};" class="big">{{ item.word }}</td>
+                {% else %}
+                <td style="color:{{item.color}};">{{ item.word }}</td>
+                {% endif %}
+                <td>- added on {{ item.date }}</td>
+              </tr>
+            </table>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.trip-detail {
+  display: block;
+}
+
+.header {
+  background: #afa;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 18px;
+}
+
+.header .username {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.header .logout {
+  float: right;
+  display: inline-block;
+}
+
+.header a {
+  padding-left: 8px;
+  padding-right: 8px;
+  text-decoration: underline;
+}
+
+.add_plan {
+  margin-top: 60px;
+  float: right;
+}
+
+.add_trip_messages {
+  text-align: center;
+  margin-top: 12px;
+  color: red;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users New</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <style media="screen">
+
+      .return {
+        margin-top: 20px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Edit User</h1>
+      <form action="/users/update" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ user.id }}">
+        First Name:
+        <input type="text" name="first_name" value="{{ user.first_name }}">
+        Last Name:
+        <input type="text" name="last_name" value="{{ user.last_name }}">
+        Email:
+        <input type="email" name="email" value="{{ user.email }}">
+        <input class="btn red sub" type="submit" value="Save">
+      </form>
+      <a class="btn blue return" href="/users">Go back</a>
+    </div>
+
+  </body>
+</html>

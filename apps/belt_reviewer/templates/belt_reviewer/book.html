@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Book</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_reviewer/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'belt_reviewer/scripts/script.js' %}" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="links">
+        <a href="/books">Home</a>
+        <div class="space"></div>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="author">
+        <h3>{{ book.name }}</h3>
+        <h5>{{ book.author.first_name }} {{ book.author.last_name }}</h5>
+      </div>
+
+      <div class="reviews">
+        <h4>Reviews</h4>
+        <ul>
+          {% for review in book.reviews.all %}
+          <li class="book-review">
+            <div class="rating">
+              {% for i in range %}
+                {% if i < review.rating %}
+                  <i class="material-icons">favorite</i>
+                {% else %}
+                  <i class="material-icons">favorite_border</i>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="review_content">
+              <a href="/users/{{ review.user.id }}">{{ review.user.first_name }}</a> says:
+              {{ review.content }}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="add-review">
+        <h4>Add a Review:</h4>
+        <form action="/books/add_review" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="book_id" value="{{ book.id }}">
+          <textarea name="content"></textarea>
+          <div class="input-field">
+            <select name="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <input class="btn red" type="submit" value="Submit">
+        </form>
+      </div>
+
+    </div>
+
+  </body>
+</html>

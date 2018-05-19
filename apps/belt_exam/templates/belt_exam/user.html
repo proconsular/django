@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_exam/css/style.css' %}">
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="username">
+        Hello {{ user.name }}!
+      </div>
+      <div class="logout">
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="schedule">
+        <h3>Your Trip Schedule</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Travel Start Date</th>
+              <th>Travel End Date</th>
+              <th>Plan</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trip in trips %}
+            <tr>
+              <td><a href="/travels/destination/{{ trip.id }}">{{ trip.destination }}</a></td>
+              <td>{{ trip.fromDate|date:"M j, Y" }}</td>
+              <td>{{ trip.toDate|date:"M j, Y" }}</td>
+              <td>{{ trip.description }}</td>
+              <td>
+                {% if trip.creator_id == user.id %}
+                <a href="/travels/delete/{{ trip.id }}">Delete</a>
+                {% else %}
+                <a href="/travels/unjoin/{{ trip.id }}">Unjoin</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="other-trips">
+        <h3>Other User's Travel Plans</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Destination</th>
+              <th>Travel Start Date</th>
+              <th>Travel End Date</th>
+              <th>Do You Want to Join?</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for trip in other_trips %}
+              <tr>
+                <td>{{ trip.creator.name }}</td>
+                <td><a href="/travels/destination/{{ trip.id }}">{{ trip.destination }}</a></td>
+                <td>{{ trip.fromDate|date:"M j, Y" }}</td>
+                <td>{{ trip.toDate|date:"M j, Y" }}</td>
+                <td><a href="/processJoin/{{ trip.id }}">Join</a></td>
+              </tr>
+              {% endfor %}
+
+          </tbody>
+        </table>
+        <div class="add_plan">
+          <a class="btn red" href="/travels/add">Add Travel Plan</a>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

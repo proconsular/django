@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_reviewer/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="user">
+        {{ user.email }}
+      </div>
+      <div class="links">
+        <a href="/books/add">Add Book and Review</a>
+        <div class="space"></div>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="main-section">
+        <h4 class="title">Recent Book Reviews:</h4>
+        <ul>
+          {% for review in reviews %}
+            <li class="review">
+              <a href="/books/{{ review.book.id }}">{{ review.book.name }}</a>
+              <div class="review">
+                <div class="rating">
+                  {% for i in range %}
+                    {% if i < review.rating %}
+                      <i class="material-icons">favorite</i>
+                    {% else %}
+                      <i class="material-icons">favorite_border</i>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="review_content">
+                  <a href="/users/{{ review.user.id }}">{{ review.user.first_name }}</a> says:
+                  {{ review.content }}
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="side-section">
+        <h5>Other Books with Reviews:</h5>
+        <ul>
+          {% for review in other_reviews %}
+            <li>
+              <a href="/books/{{ review.book.id }}">{{ review.book.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>

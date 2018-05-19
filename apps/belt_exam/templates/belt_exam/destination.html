@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Destination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_exam/css/style.css' %}">
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="username">
+        {{ user.username }}
+      </div>
+      <div class="logout">
+        <a href="/travels">Home</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="trip-description">
+        <h2>
+          {{ trip.destination }}
+        </h2>
+        <span class="trip-detail">Planned By: {{ trip.creator.name }}</span>
+        <span class="trip-detail">Description: {{ trip.description }}</span>
+        <span class="trip-detail">Travel Date From: {{ trip.fromDate|date:"M j, Y" }}</span>
+        <span class="trip-detail">Travel Date To: {{ trip.toDate|date:"M j, Y" }}</span>
+      </div>
+
+      <div class="joiners">
+        <h4>Other users' joining the trip:</h4>
+        {% for user in trip.joined_users.all %}
+        <span class="joinee">{{ user.name }}</span>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </body>
+</html>

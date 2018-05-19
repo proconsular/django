@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="messages">
+        {% for message in messages %}
+        <div class="message">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="login">
+        <h3>Login</h3>
+        <form action="/login" method="post">
+          {% csrf_token %}
+          Username:
+          <input type="text" name="username">
+          Password:
+          <input type="password" name="password">
+          <input class="btn blue" type="submit" value="Login">
+        </form>
+      </div>
+
+      <div class="register">
+        <h3>Registration</h3>
+        <form action="/register" method="post">
+          {% csrf_token %}
+          Name:
+          <input type="text" name="name">
+          Username:
+          <input type="text" name="username">
+          Password: *must be at least 8 characters
+          <input type="password" name="password">
+          Confirm Password:
+          <input type="password" name="confirm_password">
+          <input class="btn red" type="submit" value="Register">
+        </form>
+      </div>
+
+    </div>
+
+  </body>
+</html>

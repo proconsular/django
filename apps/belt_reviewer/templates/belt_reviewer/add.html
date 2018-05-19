@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Add Book and Review</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_reviewer/css/style.css' %}">
+    <script src="{% static 'belt_reviewer/scripts/script.js' %}" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <h3>Add a New Book Title and a Review:</h3>
+      <form action="/books/create" method="post">
+        {% csrf_token %}
+        <div>
+          Book Title:
+          <input type="text" name="name">
+        </div>
+        <div>
+          Author:
+          <div>
+            Choose from the list:
+            <div class="input-field">
+              <select name="author">
+                <option value="none">Select Author</option>
+                {% for author in authors %}
+                <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div>
+            Or add a new author:
+            <input type="text" name="author_first_name">
+            <input type="text" name="author_last_name">
+          </div>
+        </div>
+        <div>
+          Review:
+          <textarea name="review" rows="8" cols="80"></textarea>
+        </div>
+        <div>
+          Rating:
+          <select name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+           stars.
+        </div>
+        <div>
+          <input class="btn red" type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    <style media="screen">
+
+      .container {
+        margin: auto;
+        display: block;
+        width: 500px;
+        margin-top: 160px;
+        background: #afa;
+        padding: 24px;
+        border-radius: 16px;
+      }
+
+      td {
+        display: inline-block;
+        min-width: 225px;
+      }
+
+      textarea {
+        width: 475px;
+        height: 100px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <form action="/process" method="post">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name"></td>
+          </tr>
+          <tr>
+            <td>Location:</td>
+            <td>
+              <select name="location">
+                <option value="seattle">Seattle</option>
+                <option value="japan">Japan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Language:</td>
+            <td>
+              <select name="language">
+                <option value="javascript">JavaScript</option>
+                <option value="swift">Swift</option>
+                <option value="C#">C#</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Comment (optional):</td>
+          </tr>
+          <tr>
+            <td>
+              <textarea name="comment"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Submit"></td>
+          </tr>
+        </table>
+      </form>
+
+    </div>
+
+  </body>
+</html>
